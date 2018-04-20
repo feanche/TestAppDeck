@@ -43,10 +43,6 @@ public class PersonalPage extends AppCompatActivity {
 
     private UserPhotosAdapter userPhotosAdapter;
 
-    static final String STATE_TOKEN = "token";
-    static final String STATE_USER_ID = "user_id";
-    static final String STATE_ALBUM_ID = "album_id";
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +74,7 @@ public class PersonalPage extends AppCompatActivity {
                 for (int i = 0; i < albums_count; i++) {
                     userAlbumsArrayList.add(userAlbums.getResponse().getItems().get(i).getTitle());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_layout_dropdown, userAlbumsArrayList);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_layout_dropdown, userAlbumsArrayList);
                 adapter.setDropDownViewResource(R.layout.spinner_layout_dropdown);
                 spinnerAlbums.setAdapter(adapter);
                 actionListeners(userAlbums);
@@ -115,7 +111,6 @@ public class PersonalPage extends AppCompatActivity {
         spinnerAlbums.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //username.setText(userAlbumsArrayList.get(position));
                 album_id = userAlbums.getResponse().getItems().get(position).getId();
                 loadUserAlbumPhoto(album_id);
             }
@@ -176,14 +171,4 @@ public class PersonalPage extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-    }
 }
