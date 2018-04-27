@@ -10,7 +10,6 @@ public class RetrofitClient {
     public static Retrofit getClient(String baseUrl) {
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new TokenInterceptor())
                 .build();
 
         if (retrofit == null) {
